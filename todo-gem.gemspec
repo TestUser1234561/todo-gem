@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
     spec.add_dependency "thin"
     spec.add_dependency "require_all"
     spec.add_dependency "sqlite3"
-    spec.add_dependency "bcrypt"
+    spec.add_dependency "bcrypt", "~> 3.1.7"
 
     spec.add_development_dependency "bundler", "~> 1.16"
     spec.add_development_dependency "rake", "~> 10.0"
