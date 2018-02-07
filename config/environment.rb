@@ -5,6 +5,7 @@ Bundler.require(:default, ENV['SINATRA_ENV'])
 require 'sinatra'
 require 'active_record'
 require 'require_all'
+require 'bcrypt'
 
 ActiveRecord::Base.establish_connection(
     :adapter => "sqlite3",
