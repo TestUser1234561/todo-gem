@@ -10,6 +10,11 @@ class ApplicationController < Sinatra::Base
         set :views, 'app/views'
     end
 
+    before %r{/(signup|login)} do
+        #Send user to list if they are already logged in
+        redirect to '/list' if session[:user_id]
+    end
+
     #Display index
     get '/' do
         #Send user to list if they are already logged in
@@ -21,10 +26,6 @@ class ApplicationController < Sinatra::Base
 
     #signup
     get '/signup' do
-        #Send user to list if they are already logged in
-        redirect to '/list' if session[:user_id]
-
-        #Display sign up
         erb :signup
     end
 
@@ -34,7 +35,7 @@ class ApplicationController < Sinatra::Base
         redirect to '/signup' if params[:username] == "" && params[:email] == "" && params[:password] == ""
 
         #Create new user
-        user = Users.new(username: params[:username], email: params[:email], password: [:password])
+        user = Users.new(username: params[:username], email: params[:email], password: params[:password])
 
         #Try to save user and login
         if user.save
@@ -48,10 +49,6 @@ class ApplicationController < Sinatra::Base
 
     #Login
     get '/login' do
-        #Send user to list if they are already logged in
-        redirect to '/list' if session[:user_id]
-
-        #Display login
         erb :login
     end
 
@@ -60,17 +57,36 @@ class ApplicationController < Sinatra::Base
         #Check for filled in data
         redirect to '/login' if params[:email] == "" && params[:password] == ""
 
-        #Find user
-        user = Users.find_by(email: params[:email])
-
         #Authenticate user
-        if user && user.authenticate(params[:password])
+        user = Users.find_by(email: params[:email]).try(:authenticate, params[:password])
+
+        #Check user auth
+        if user
             session[:user_id] = user.id
-            redirect to 'list'
+            redirect to '/list'
         else
             #Authentication failed
             redirect to '/login'
         end
+    end
+
+    #Run before any list routes
+    before '/list/*' do
+        #Send user to index if they are not logged in
+        redirect to '/' unless session[:user_id]
+    end
+
+    #Lists
+    get '/list' do
+        #Display user's list
+        @user = Users.find_by(id: session[:user_id])
+        erb :'list/list'
+    end
+
+    get '/logout' do
+        session[:user_id] = nil
+
+        redirect to '/'
     end
 
 end
