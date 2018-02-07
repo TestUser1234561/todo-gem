@@ -1,0 +1,7 @@
+<p><%= @task.content %></p>
+
+<form method="post" action="/list/<%= @task.id %>">
+    <input type="hidden" id="hidden" name="_method" value="patch">
+    <input type="text" name="content">
+    <input type="submit" name="submit" value="Update">
+</form>

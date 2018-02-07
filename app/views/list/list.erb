@@ -1,2 +1,18 @@
-<p>Hello!</p>
-<%= @user.username %>
+<div id="list">
+    <div id="title">
+        <span id="username"><%= @user.username %>'s List</span> <span id="logout"><a href="/logout">Logout</a></span>
+    </div>
+    <div id="tasks">
+        <ul>
+            <% @user.tasks.each do |task| %>
+                <li class="task"><a href="/list/<%= task.id %>">
+                    <% if task.content.length > 32 %>
+                        <%= task.content[0..32].gsub(/\s\w+\s*$/,'...') %>
+                    <% else %>
+                        <%= task.content %>
+                    <% end %>
+                </a></li>
+            <% end %>
+        </ul>
+    </div>
+</div>
