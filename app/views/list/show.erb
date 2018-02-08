@@ -1,1 +1,11 @@
-<p><%= @task.content %></p>
+<div id="list">
+    <div id="title">
+        <span id="username"><%= @user.username.titleize %>'s List:</span>
+        <span id="back"><a href="/list"><i class="fas fa-arrow-left"></i></a></span>
+    </div>
+    <div id="tasks">
+        <ul>
+            <li class="task" style="border-bottom: none"><p style="margin-left: 40px;"><%= @task.content %></p></li>
+        </ul>
+    </div>
+</div>

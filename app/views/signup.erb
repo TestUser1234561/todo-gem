@@ -1,7 +1,15 @@
-<h2>Sign up</h2>
-<form method="post", action="/signup">
-    <input type="text" name="username">
-    <input type="email" name="email">
-    <input type="password" name="password">
-    <input type="submit" name="submit" value="Sign up">
-</form>
+<div id="list">
+    <div id="title">
+        <span id="username">Sign-up</span>
+    </div>
+    <div id="tasks" style="height: 300px; overflow: hidden">
+        <form method="post" action="/signup">
+            <ul>
+                <li class="task" style="text-align: center"><input type="text" name="username" placeholder="Username"></li>
+                <li class="task" style="text-align: center"><input type="email" name="email" placeholder="Email"></li>
+                <li class="task" style="text-align: center"><input type="password" name="password" placeholder="Password"></li>
+                <li class="task" style="text-align: center"><input type="submit" id="submit" name="submit" value="Signup"></li>
+            </ul>
+        </form>
+    </div>
+</div>

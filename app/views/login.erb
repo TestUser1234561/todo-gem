@@ -1,6 +1,14 @@
-<h2>Login</h2>
-<form method="post" action="/login">
-    <input type="email" name="email">
-    <input type="password" name="password">
-    <input type="submit" name="submit" value="Login">
-</form>
+<div id="list">
+    <div id="title">
+        <span id="username">Login</span>
+    </div>
+    <div id="tasks" style="height: 225px; overflow: hidden">
+        <form method="post" action="/login">
+            <ul>
+                <li class="task" style="text-align: center"><input type="email" name="email" placeholder="Email"></li>
+                <li class="task" style="text-align: center"><input type="password" name="password" placeholder="Password"></li>
+                <li class="task" style="text-align: center"><input type="submit" id="submit" name="submit" value="Login"></li>
+            </ul>
+        </form>
+    </div>
+</div>

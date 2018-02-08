@@ -1,7 +1,17 @@
-<p><%= @task.content %></p>
-
-<form method="post" action="/list/<%= @task.id %>">
-    <input type="hidden" id="hidden" name="_method" value="patch">
-    <input type="text" name="content">
-    <input type="submit" name="submit" value="Update">
-</form>
+<div id="list">
+    <div id="title">
+        <span id="username">Edit task</span>
+        <span id="back"><a href="/list"><i class="fas fa-arrow-left"></i></a></span>
+    </div>
+    <div id="tasks" style="height: 150px; overflow: hidden">
+        <form method="post" action="/list/<%= @task.id %>">
+            <input type="hidden" id="hidden" name="_method" value="patch">
+            <ul>
+                <li class="task" style="text-align: center">
+                    <input type="text" name="content" placeholder="Task" style="width: 90%; border: none; height: 75%; margin-top: -25px; background-color: #f7f8ed; text-align: center" value="<%= @task.content %>">
+                </li>
+                <li class="task" style="text-align: center"><input type="submit" id="submit" name="submit" value="Done"></li>
+            </ul>
+        </form>
+    </div>
+</div>

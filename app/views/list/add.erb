@@ -1,5 +1,15 @@
-<h2>Add task</h2>
-<form method="post" action="/list/add">
-    <input type="text" name="content">
-    <input type="submit" name="submit" value="Add">
-</form>
+<div id="list">
+    <div id="title">
+        <span id="username">Add task</span>
+    </div>
+    <div id="tasks" style="height: 150px; overflow: hidden">
+        <form method="post" action="/list/add">
+            <ul>
+                <li class="task" style="text-align: center">
+                    <input type="text" name="content" placeholder="Task" style="width: 90%; border: none; height: 75%; margin-top: -25px; background-color: #f7f8ed; text-align: center">
+                </li>
+                <li class="task" style="text-align: center"><input type="submit" id="submit" name="submit" value="Add"></li>
+            </ul>
+        </form>
+    </div>
+</div>

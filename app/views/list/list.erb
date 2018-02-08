@@ -1,18 +1,48 @@
 <div id="list">
     <div id="title">
-        <span id="username"><%= @user.username %>'s List</span> <span id="logout"><a href="/logout">Logout</a></span>
+        <span id="username"><%= @user.username.titleize %>'s List</span> <span id="logout"><a href="/logout">Logout</a></span>
     </div>
     <div id="tasks">
         <ul>
             <% @user.tasks.each do |task| %>
-                <li class="task"><a href="/list/<%= task.id %>">
-                    <% if task.content.length > 32 %>
-                        <%= task.content[0..32].gsub(/\s\w+\s*$/,'...') %>
-                    <% else %>
-                        <%= task.content %>
-                    <% end %>
-                </a></li>
+                <li class="task">
+                    <!--Task Check-->
+                    <form id="check-<%= task.id %>" method="post" action="/list/<%= task.id %>/check">
+                        <input type="hidden" id="hidden" name="_method" value="patch">
+                        <a href="javascript:{}" onclick="document.getElementById('check-<%= task.id %>').submit();">
+                            <% if task.done %>
+                                <i class="far fa-check-circle" style="color: lightgreen"></i>
+                            <% else %>
+                                <i class="far fa-circle"></i>
+                            <% end %>
+                        </a>
+                    </form>
+
+                    <!--Length Check-->
+                    <span>
+                        <% if task.content.length > 32 %>
+                           <a href="/list/<%= task.id %>"><%= task.content[0..32].gsub(/\s\w+\s*$/,'...') %></a>
+                        <% else %>
+                            <%= task.content %>
+                        <% end %>
+                    </span>
+
+                    <!-- Edit & Delete -->
+                    <span id="buttons-right">
+                        <a href="/list/<%= task.id %>/edit"><i class="far fa-edit"></i></a>
+                        <form id="delete-<%= task.id %>" method="post" action="/list/<%= task.id %>">
+                            <input type="hidden" id="hidden" name="_method" value="delete">
+                            <a class="delete" href="javascript:{}" onclick="document.getElementById('delete-<%= task.id %>').submit();"><i class="fas fa-trash-alt"></i></a>
+                        </form>
+                    </span>
+
+                </li>
             <% end %>
         </ul>
     </div>
+    <div id="add-button">
+        <span><i class="fas fa-plus"></i></span><span>Add</span>
+    </div>
 </div>
+
+<script src="main.js"></script>

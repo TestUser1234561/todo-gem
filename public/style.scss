@@ -1,0 +1,153 @@
+$font-stack: 'Open Sans', sans-serif;
+
+//Util
+.center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+body {
+  font-family: $font-stack;
+  background-color: #f5f4f3;
+}
+
+//List
+#list {
+  @extend .center;
+  width: 35%;
+  height: 75%;
+  border-radius: 15px;
+}
+
+$title-height: 100px;
+#title {
+  width: 100%;
+  height:$title-height;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  line-height: 100px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+  background-color: #7c6d60;
+
+  #username {
+    margin-left: 25px;
+    float: left;
+    font-weight: bold;
+    font-size: 2em;
+  }
+
+  #logout, #logout:visited, #back {
+    margin-right: 25px;
+    float: right;
+    font-size: 1em;
+
+    a{
+      text-decoration: none;
+    }
+  }
+
+  #logout a:hover {
+    text-decoration: underline;
+  }
+
+  #back {
+    margin-right: 30px;
+    float: right;
+    font-size: 1.5em;
+    text-decoration: none;
+
+    a {
+      color: black;
+    }
+
+    a:hover {
+      color: cornflowerblue;
+    }
+  }
+}
+
+#tasks {
+  width: 100%;
+  height: calc(100% - #{$title-height} - 55px);
+  margin-top: -16px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  overflow-y: auto;
+  background-color: #f7f8ed;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+ul {
+  margin-top: 0;
+}
+
+$task-height: 25px;
+.task {
+  //Dirty width hack
+  width: calc(100% + 40px);
+  margin-left: -40px;
+  height: $task-height * 2;
+  padding-top: $task-height;
+  line-height: $task-height;
+  list-style: none;
+  border-bottom: 1px solid rgb(124, 124, 124);
+  background-color: #f7f8ed;
+
+  #buttons-right {
+    float: right;
+    margin-right: 20px;
+  }
+
+  span {
+    margin-left: 15px;
+  }
+
+  form {
+    display: inline;
+    margin-left: 20px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    color: cornflowerblue;
+  }
+
+  .delete:hover {
+    color: darkred;
+  }
+}
+
+#add-button {
+  width: 125px;
+  height: 35px;
+  float: right;
+  margin-top: 15px;
+  line-height: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #d5d4db;
+
+  span {
+    margin-left: 18px;
+  }
+}
+
+//Login - Sign-up
+#submit {
+  width: 125px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 5px;
+  margin-top: -5px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #d5d4db;
+  border:none;
+  font-size:1em;
+}
