@@ -40,6 +40,9 @@ class ApplicationController < Sinatra::Base
         #Check user inputs
         redirect to '/signup' if params[:username] == "" && params[:email] == "" && params[:password] == ""
 
+        #Check if email is in use
+        redirect to '/signup' if User.find_by(email: params[:email])
+
         #Create new user
         user = User.new(username: params[:username], email: params[:email], password: params[:password])
 
