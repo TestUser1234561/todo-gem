@@ -117,6 +117,15 @@ class ApplicationController < Sinatra::Base
         erb :'list/edit'
     end
 
+    patch '/list/:id/check' do |id|
+        #Find task
+        task = Task.find_by(id: id)
+        #Update task if it belongs to the current user
+        task.update(done: !task.done) if task.user_id == current_user.id
+        #Redirect to list
+        redirect to '/list'
+    end
+
     patch '/list/:id' do |id|
         #Find task
         task = Task.find(id)
@@ -140,6 +149,8 @@ class ApplicationController < Sinatra::Base
     get '/list/:id' do |id|
         #Find task
         @task = Task.find(id)
+        #Get user
+        @user = current_user
         #Check if task belongs to user
         redirect to '/list' unless @task.user_id == current_user.id
         #Render task
