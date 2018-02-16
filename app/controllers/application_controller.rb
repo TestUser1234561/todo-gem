@@ -106,7 +106,7 @@ class ApplicationController < Sinatra::Base
     post '/list/add' do
         task = Task.create(content: params[:content])
         current_user.tasks << task
-        redirect to '/list/' + task.id.to_s
+        redirect to '/list'
     end
 
     #Edit task
@@ -132,7 +132,7 @@ class ApplicationController < Sinatra::Base
         #Update task if it belongs to the current user
         task.update(content: params[:content]) if task.user_id == current_user.id
         #Redirect to task
-        redirect to '/list/' + id.to_s
+        redirect to '/list'
     end
 
     #Delete task
